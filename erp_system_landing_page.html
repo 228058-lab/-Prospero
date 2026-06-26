@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Prospero ERP — Smart Desktop ERP for Modern Businesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+/* ───────────────── RESET & BASE ───────────────── */
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#060a10;
+  --bg2:#0c1220;
+  --panel:#0f1929;
+  --panel2:#131f30;
+  --border:#1e2f45;
+  --border2:#243650;
+  --cyan:#00e5ff;
+  --cyan2:#00b8d9;
+  --green:#00ff88;
+  --purple:#7c3aed;
+  --purple2:#a855f7;
+  --gold:#f59e0b;
+  --red:#ef4444;
+  --text:#e8f0fe;
+  --text2:#94a3b8;
+  --text3:#64748b;
+  --glow-cyan:0 0 30px rgba(0,229,255,0.25);
+  --glow-purple:0 0 30px rgba(124,58,237,0.3);
+  --glow-green:0 0 30px rgba(0,255,136,0.2);
+  --font-en:'Space Grotesk',sans-serif;
+  --font-title:'Syne',sans-serif;
+  --font-ar:'Cairo',sans-serif;
+}
+body.light{
+  --bg:#f0f4ff;
+  --bg2:#e8eef8;
+  --panel:#ffffff;
+  --panel2:#f5f7ff;
+  --border:#d0d9ef;
+  --border2:#b8c5e0;
+  --cyan:#0077aa;
+  --cyan2:#005f8a;
+  --green:#00875a;
+  --purple:#6d28d9;
+  --purple2:#7c3aed;
+  --gold:#b45309;
+  --red:#dc2626;
+  --text:#0f172a;
+  --text2:#334155;
+  --text3:#64748b;
+  --glow-cyan:0 0 30px rgba(0,119,170,0.15);
+  --glow-purple:0 0 30px rgba(109,40,217,0.15);
+  --glow-green:0 0 20px rgba(0,135,90,0.12);
+}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-en);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+body.ar{font-family:var(--font-ar);direction:rtl;}
+a{text-decoration:none;color:inherit;}
+
+/* ───────────────── NOISE OVERLAY ───────────────── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.4;pointer-events:none;z-index:0;
+}
+
+/* ───────────────── LIGHT MODE OVERRIDES ───────────────── */
+body.light .grid-bg{
+  background-image:
+    linear-gradient(rgba(0,100,180,0.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,100,180,0.06) 1px,transparent 1px);
+}
+body.light nav{
+  background:rgba(240,244,255,0.9);
+  border-bottom-color:rgba(208,217,239,0.8);
+}
+body.light .hero-glow{
+  background:radial-gradient(circle,rgba(0,119,170,0.08) 0%,transparent 70%);
+}
+body.light .hero-glow2{
+  background:radial-gradient(circle,rgba(109,40,217,0.07) 0%,transparent 70%);
+}
+body.light .hero-title .cyan{
+  text-shadow:0 0 40px rgba(0,119,170,0.25);
+}
+body.light .metrics-bar{
+  background:rgba(255,255,255,0.9);
+  border-color:var(--border);
+}
+body.light .module-card{background:#fff;}
+body.light .flow-step{background:#fff;}
+body.light .finance-visual{background:#fff;}
+body.light .journal-entry{background:#f8faff;border-color:var(--border);}
+body.light .journal-entry .dr{color:#00875a;}
+body.light .journal-entry .cr{color:#dc2626;}
+body.light .finance-point{background:#fff;}
+body.light .sec-card{background:#fff;}
+body.light .team-card{background:#fff;}
+body.light .tech-pill{background:#fff;}
+body.light .vision-pill{background:rgba(255,255,255,0.8);}
+body.light .vision-glow{
+  background:radial-gradient(ellipse at center,rgba(109,40,217,0.06) 0%,transparent 70%);
+}
+body.light footer{background:#e8eef8;}
+body.light .hero-badge{
+  background:rgba(0,119,170,0.07);
+  border-color:rgba(0,119,170,0.2);
+}
+body.light .btn-secondary{
+  background:rgba(255,255,255,0.8);
+}
+body.light .lang-btn{
+  background:rgba(255,255,255,0.85);
+}
+body.light .nav-logo-icon{
+  box-shadow:0 0 20px rgba(0,119,170,0.2);
+}
+body.light .ratio-item{
+  background:rgba(0,119,170,0.05);
+  border-color:rgba(0,119,170,0.15);
+}
+body.light .impact-card{
+  background:rgba(0,119,170,0.04);
+  border-color:rgba(0,119,170,0.12);
+}
+body.light .problem-solution{
+  background:linear-gradient(135deg,rgba(0,119,170,0.06),rgba(109,40,217,0.06));
+  border-color:rgba(0,119,170,0.18);
+}
+body.light #vision{background:#e0e8f5;}
+
+/* theme toggle button */
+.theme-btn{
+  width:42px;height:42px;border-radius:12px;border:1px solid var(--border2);
+  background:rgba(15,25,41,0.85);backdrop-filter:blur(14px);
+  color:var(--text2);font-size:17px;cursor:pointer;
+  transition:all .25s;
+  display:flex;align-items:center;justify-content:center;
+}
+body.light .theme-btn{background:rgba(255,255,255,0.85);}
+.theme-btn:hover{border-color:var(--cyan);color:var(--cyan);}
+
+/* ───────────────── GRID BG ───────────────── */
+.grid-bg{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(0,229,255,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,229,255,0.03) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+
+/* ───────────────── LANG TOGGLE ───────────────── */
+.lang-bar{
+  position:fixed;top:90px;right:16px;z-index:1000;
+  display:flex;flex-direction:column;gap:8px;
+  align-items:center;
+}
+.lang-btn{
+  width:42px;height:42px;border-radius:12px;border:1px solid var(--border2);
+  background:rgba(15,25,41,0.85);backdrop-filter:blur(14px);
+  color:var(--text2);font-size:13px;font-weight:600;cursor:pointer;
+  transition:all .25s;font-family:var(--font-en);
+  display:flex;align-items:center;justify-content:center;
+}
+.lang-btn.active{
+  background:rgba(0,229,255,0.12);border-color:var(--cyan);
+  color:var(--cyan);box-shadow:var(--glow-cyan);
+}
+.lang-btn:hover:not(.active){color:var(--text);border-color:var(--border2);}
+
+/* ───────────────── NAV ───────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:72px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;
+  background:rgba(6,10,16,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(30,47,69,0.6);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:12px;
+}
+.nav-logo-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:linear-gradient(135deg,var(--cyan),var(--purple));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:18px;color:#fff;
+  box-shadow:var(--glow-cyan);
+}
+.nav-logo-text{font-family:var(--font-title);font-size:20px;font-weight:700;letter-spacing:.5px;}
+.nav-logo-text span{color:var(--cyan);}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{color:var(--text2);font-size:14px;font-weight:500;transition:.2s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-cta{
+  padding:10px 24px;border-radius:50px;
+  background:linear-gradient(135deg,var(--cyan),var(--cyan2));
+  color:#060a10;font-weight:700;font-size:14px;
+  cursor:pointer;transition:.25s;border:none;
+  box-shadow:0 0 20px rgba(0,229,255,0.3);
+}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 0 35px rgba(0,229,255,0.45);}
+
+/* ───────────────── SECTIONS ───────────────── */
+section{position:relative;z-index:10;}
+
+/* ───────────────── HERO ───────────────── */
+#hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:120px 24px 80px;
+  position:relative;overflow:hidden;
+}
+.hero-glow{
+  position:absolute;
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,229,255,0.07) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.hero-glow2{
+  position:absolute;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(124,58,237,0.08) 0%,transparent 70%);
+  top:30%;right:10%;pointer-events:none;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 18px;border-radius:50px;
+  border:1px solid rgba(0,229,255,0.25);
+  background:rgba(0,229,255,0.06);
+  color:var(--cyan);font-size:13px;font-weight:600;
+  margin-bottom:32px;letter-spacing:.5px;
+  animation:fadeDown .6s ease both;
+}
+.hero-badge::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--cyan);box-shadow:var(--glow-cyan);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.hero-title{
+  font-family:var(--font-title);
+  font-size:clamp(44px,7vw,88px);
+  font-weight:800;line-height:1.05;
+  letter-spacing:-2px;
+  margin-bottom:24px;
+  animation:fadeDown .7s .1s ease both;
+}
+.hero-title .cyan{color:var(--cyan);text-shadow:0 0 40px rgba(0,229,255,0.4);}
+.hero-title .line2{
+  background:linear-gradient(135deg,var(--purple2),var(--cyan));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  font-size:clamp(16px,2.5vw,20px);color:var(--text2);
+  max-width:640px;margin:0 auto 48px;line-height:1.7;
+  animation:fadeDown .8s .2s ease both;
+}
+.hero-btns{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  animation:fadeDown .9s .3s ease both;
+}
+.btn-primary{
+  padding:16px 36px;border-radius:50px;
+  background:linear-gradient(135deg,var(--cyan),var(--cyan2));
+  color:#060a10;font-weight:700;font-size:16px;
+  cursor:pointer;transition:.25s;border:none;
+  box-shadow:0 0 30px rgba(0,229,255,0.35);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(0,229,255,0.5);}
+.btn-secondary{
+  padding:16px 36px;border-radius:50px;
+  border:1px solid var(--border2);
+  background:rgba(15,25,41,0.6);
+  color:var(--text);font-weight:600;font-size:16px;
+  cursor:pointer;transition:.25s;
+}
+.btn-secondary:hover{border-color:var(--cyan);color:var(--cyan);}
+
+/* ───────────────── METRICS BAR ───────────────── */
+.metrics-bar{
+  display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+  border:1px solid var(--border);border-radius:20px;
+  background:rgba(12,18,32,0.8);backdrop-filter:blur(12px);
+  max-width:900px;margin:60px auto 0;overflow:hidden;
+  animation:fadeUp .8s .5s ease both;
+}
+.metric{
+  flex:1;min-width:160px;padding:28px 24px;text-align:center;
+  border-right:1px solid var(--border);
+  position:relative;
+}
+.metric:last-child{border-right:none;}
+.metric-val{
+  font-family:var(--font-title);font-size:36px;font-weight:800;
+  color:var(--cyan);line-height:1;margin-bottom:6px;
+}
+.metric-val.purple{color:var(--purple2);}
+.metric-val.green{color:var(--green);}
+.metric-val.gold{color:var(--gold);}
+.metric-label{font-size:13px;color:var(--text3);font-weight:500;}
+
+/* ───────────────── SECTION COMMON ───────────────── */
+.section-wrap{max-width:1200px;margin:0 auto;padding:100px 24px;}
+.section-label{
+  display:inline-block;
+  font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:16px;
+}
+.section-title{
+  font-family:var(--font-title);
+  font-size:clamp(32px,5vw,52px);
+  font-weight:800;line-height:1.1;letter-spacing:-1px;
+  margin-bottom:20px;
+}
+.section-sub{color:var(--text2);font-size:18px;max-width:600px;line-height:1.7;}
+
+/* ───────────────── PROBLEM SECTION ───────────────── */
+#problem{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);}
+.problem-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:60px;
+}
+.problem-card{
+  padding:28px;border-radius:16px;
+  border:1px solid var(--border);
+  background:rgba(12,18,32,0.6);
+  display:flex;gap:16px;align-items:flex-start;
+  transition:.3s;
+}
+.problem-card:hover{border-color:rgba(239,68,68,0.4);transform:translateY(-3px);}
+.problem-icon{
+  width:44px;height:44px;border-radius:10px;
+  background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.problem-card h3{font-size:17px;font-weight:700;margin-bottom:6px;}
+.problem-card p{font-size:14px;color:var(--text2);line-height:1.6;}
+.problem-solution{
+  margin-top:48px;padding:32px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(0,229,255,0.05),rgba(124,58,237,0.05));
+  border:1px solid rgba(0,229,255,0.15);
+  text-align:center;
+}
+.problem-solution p{font-size:20px;font-weight:600;color:var(--text);}
+.problem-solution span{color:var(--cyan);}
+
+/* ───────────────── MODULES ───────────────── */
+#modules{background:var(--bg);}
+.modules-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;margin-top:60px;
+}
+.module-card{
+  padding:28px;border-radius:18px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  transition:.3s;position:relative;overflow:hidden;cursor:default;
+}
+.module-card::before{
+  content:'';position:absolute;inset:0;border-radius:18px;
+  background:linear-gradient(135deg,var(--accent-from,rgba(0,229,255,0.04)),var(--accent-to,rgba(124,58,237,0.04)));
+  opacity:0;transition:.3s;
+}
+.module-card:hover::before{opacity:1;}
+.module-card:hover{border-color:var(--accent-border,rgba(0,229,255,0.3));transform:translateY(-5px);box-shadow:var(--accent-glow,var(--glow-cyan));}
+.module-icon{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;margin-bottom:18px;
+  border:1px solid var(--accent-border,rgba(0,229,255,0.2));
+  background:var(--accent-bg,rgba(0,229,255,0.08));
+}
+.module-card h3{font-size:18px;font-weight:700;margin-bottom:10px;}
+.module-card p{font-size:14px;color:var(--text2);line-height:1.65;}
+.module-tag{
+  display:inline-block;margin-top:14px;
+  padding:4px 10px;border-radius:50px;
+  font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  background:var(--accent-bg,rgba(0,229,255,0.08));
+  color:var(--accent-text,var(--cyan));
+  border:1px solid var(--accent-border,rgba(0,229,255,0.15));
+}
+
+/* module color variants */
+.mc-cyan{--accent-border:rgba(0,229,255,0.3);--accent-bg:rgba(0,229,255,0.08);--accent-text:var(--cyan);--accent-glow:var(--glow-cyan);--accent-from:rgba(0,229,255,0.05);--accent-to:rgba(0,229,255,0.01);}
+.mc-purple{--accent-border:rgba(168,85,247,0.3);--accent-bg:rgba(168,85,247,0.08);--accent-text:var(--purple2);--accent-glow:var(--glow-purple);--accent-from:rgba(168,85,247,0.05);--accent-to:rgba(168,85,247,0.01);}
+.mc-green{--accent-border:rgba(0,255,136,0.3);--accent-bg:rgba(0,255,136,0.08);--accent-text:var(--green);--accent-glow:var(--glow-green);--accent-from:rgba(0,255,136,0.05);--accent-to:rgba(0,255,136,0.01);}
+.mc-gold{--accent-border:rgba(245,158,11,0.3);--accent-bg:rgba(245,158,11,0.08);--accent-text:var(--gold);--accent-glow:0 0 30px rgba(245,158,11,0.2);--accent-from:rgba(245,158,11,0.05);--accent-to:rgba(245,158,11,0.01);}
+.mc-red{--accent-border:rgba(239,68,68,0.3);--accent-bg:rgba(239,68,68,0.08);--accent-text:var(--red);--accent-glow:0 0 30px rgba(239,68,68,0.2);--accent-from:rgba(239,68,68,0.05);--accent-to:rgba(239,68,68,0.01);}
+
+/* ───────────────── HOW IT WORKS ───────────────── */
+#howitworks{background:var(--bg2);}
+.flow-container{
+  margin-top:60px;
+  display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;
+  gap:0;align-items:center;
+}
+.flow-step{
+  padding:24px;border-radius:16px;
+  border:1px solid var(--border);background:var(--panel);
+  text-align:center;transition:.3s;
+}
+.flow-step:hover{border-color:var(--cyan);box-shadow:var(--glow-cyan);}
+.flow-step-num{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cyan),var(--cyan2));
+  color:#060a10;font-weight:800;font-size:16px;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 12px;
+}
+.flow-step h4{font-size:15px;font-weight:700;margin-bottom:6px;}
+.flow-step p{font-size:12px;color:var(--text2);}
+.flow-arrow{
+  font-size:24px;color:var(--cyan);text-align:center;
+  padding:0 12px;opacity:.6;
+}
+.impact-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+  margin-top:48px;
+}
+.impact-card{
+  padding:24px;border-radius:14px;
+  border:1px solid rgba(0,229,255,0.1);
+  background:rgba(0,229,255,0.03);
+  text-align:center;
+}
+.impact-icon{font-size:32px;margin-bottom:12px;}
+.impact-title{font-size:14px;font-weight:700;color:var(--cyan);margin-bottom:6px;}
+.impact-text{font-size:13px;color:var(--text2);}
+
+/* ───────────────── FINANCIAL INTELLIGENCE ───────────────── */
+#finance{background:var(--bg);}
+.finance-layout{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;
+  align-items:center;margin-top:60px;
+}
+.finance-visual{
+  background:var(--panel);border-radius:20px;
+  border:1px solid var(--border);padding:32px;
+  position:relative;overflow:hidden;
+}
+.finance-visual::before{
+  content:'';position:absolute;top:-50px;right:-50px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,229,255,0.08),transparent);
+}
+.ratio-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+.ratio-item{
+  padding:16px;border-radius:12px;
+  background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.12);
+}
+.ratio-name{font-size:12px;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
+.ratio-val{font-family:var(--font-title);font-size:28px;font-weight:800;color:var(--cyan);}
+.ratio-change{font-size:12px;color:var(--green);}
+.journal-entry{
+  padding:16px;border-radius:10px;
+  background:rgba(15,25,41,0.8);border:1px solid var(--border);
+  font-family:'Courier New',monospace;font-size:13px;
+  margin-top:16px;
+}
+.journal-entry .dr{color:var(--green);}
+.journal-entry .cr{color:var(--red);}
+.finance-points{display:flex;flex-direction:column;gap:20px;}
+.finance-point{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:20px;border-radius:14px;
+  border:1px solid var(--border);background:var(--panel);
+  transition:.3s;
+}
+.finance-point:hover{border-color:rgba(0,229,255,0.2);}
+.fp-icon{
+  width:44px;height:44px;border-radius:12px;
+  background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.finance-point h4{font-size:16px;font-weight:700;margin-bottom:5px;}
+.finance-point p{font-size:14px;color:var(--text2);}
+
+/* ───────────────── SECURITY ───────────────── */
+#security{background:var(--bg2);}
+.security-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:60px;
+}
+.sec-card{
+  padding:32px;border-radius:18px;
+  border:1px solid var(--border);background:var(--panel);
+  position:relative;overflow:hidden;transition:.3s;
+}
+.sec-card:hover{border-color:rgba(124,58,237,0.3);box-shadow:var(--glow-purple);}
+.sec-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--purple),var(--purple2));
+  opacity:0;transition:.3s;
+}
+.sec-card:hover::after{opacity:1;}
+.sec-icon{font-size:36px;margin-bottom:16px;}
+.sec-card h3{font-size:19px;font-weight:700;margin-bottom:10px;}
+.sec-card p{font-size:14px;color:var(--text2);line-height:1.65;}
+.sec-features{display:flex;flex-direction:column;gap:8px;margin-top:16px;}
+.sec-feature{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--text2);
+}
+.sec-feature::before{
+  content:'✓';color:var(--green);font-weight:700;font-size:12px;
+  width:18px;height:18px;border-radius:50%;
+  background:rgba(0,255,136,0.1);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+
+/* ───────────────── TEAM ───────────────── */
+#team{background:var(--bg);}
+.team-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px;
+}
+.team-card{
+  padding:32px 24px;border-radius:20px;
+  border:1px solid var(--border);background:var(--panel);
+  text-align:center;transition:.3s;
+  position:relative;overflow:hidden;
+}
+.team-card::before{
+  content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);
+  width:120px;height:120px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,229,255,0.08),transparent);
+  opacity:0;transition:.4s;
+}
+.team-card:hover::before{opacity:1;}
+.team-card:hover{border-color:rgba(0,229,255,0.2);transform:translateY(-5px);}
+.team-avatar{
+  width:88px;height:88px;border-radius:50%;
+  margin:0 auto 20px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-title);font-size:32px;font-weight:800;
+  color:#fff;position:relative;
+  border:2px solid var(--border2);
+}
+.team-name{font-size:20px;font-weight:700;margin-bottom:6px;}
+.team-role{font-size:14px;color:var(--cyan);font-weight:600;margin-bottom:4px;}
+.team-dept{font-size:13px;color:var(--text3);}
+.team-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:16px;}
+.team-tag{
+  padding:3px 10px;border-radius:50px;
+  font-size:11px;font-weight:600;
+  background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.15);
+  color:var(--cyan);
+}
+
+/* ───────────────── VISION ───────────────── */
+#vision{
+  background:var(--bg2);
+  padding:120px 24px;text-align:center;position:relative;overflow:hidden;
+}
+.vision-glow{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(124,58,237,0.1) 0%,transparent 70%);
+  pointer-events:none;
+}
+.vision-quote{
+  font-family:var(--font-title);
+  font-size:clamp(24px,4vw,44px);
+  font-weight:800;line-height:1.2;
+  max-width:800px;margin:0 auto 32px;
+  letter-spacing:-1px;
+}
+.vision-quote .highlight{
+  background:linear-gradient(135deg,var(--cyan),var(--purple2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.vision-desc{
+  font-size:18px;color:var(--text2);max-width:600px;
+  margin:0 auto 48px;line-height:1.7;
+}
+.vision-pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.vision-pill{
+  padding:10px 20px;border-radius:50px;
+  border:1px solid var(--border2);
+  font-size:14px;font-weight:600;color:var(--text2);
+  background:rgba(15,25,41,0.6);
+}
+
+/* ───────────────── TECH STACK BANNER ───────────────── */
+.tech-banner{
+  padding:40px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:var(--bg);text-align:center;
+}
+.tech-banner p{font-size:13px;color:var(--text3);margin-bottom:20px;letter-spacing:1px;text-transform:uppercase;}
+.tech-pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.tech-pill{
+  padding:8px 20px;border-radius:50px;
+  border:1px solid var(--border);
+  font-size:13px;font-weight:600;color:var(--text2);
+  background:var(--panel);
+}
+
+/* ───────────────── FOOTER ───────────────── */
+footer{
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:60px 40px 40px;
+}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:48px;
+}
+.footer-brand p{font-size:15px;color:var(--text2);line-height:1.7;margin-top:12px;max-width:280px;}
+.footer-links h4{font-size:14px;font-weight:700;margin-bottom:16px;color:var(--text);}
+.footer-links ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-links ul li a{font-size:14px;color:var(--text3);transition:.2s;}
+.footer-links ul li a:hover{color:var(--cyan);}
+.footer-bottom{
+  border-top:1px solid var(--border);padding-top:24px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-bottom p{font-size:13px;color:var(--text3);}
+.footer-badge{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 14px;border-radius:50px;
+  border:1px solid rgba(0,229,255,0.15);
+  font-size:12px;color:var(--cyan);font-weight:600;
+}
+
+/* ───────────────── ANIMATIONS ───────────────── */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ───────────────── ARABIC OVERRIDES ───────────────── */
+body.ar .nav-links{flex-direction:row-reverse;}
+body.ar .flow-arrow{transform:scaleX(-1);}
+body.ar .footer-top{direction:rtl;}
+body.ar .hero-title{font-family:'Cairo',sans-serif;letter-spacing:0;}
+body.ar .section-title{font-family:'Cairo',sans-serif;letter-spacing:0;}
+body.ar .nav-logo-text{font-family:'Cairo',sans-serif;}
+body.ar .vision-quote{font-family:'Cairo',sans-serif;letter-spacing:0;}
+body.ar .metric-val{font-family:'Cairo',sans-serif;}
+body.ar .problem-grid{direction:rtl;}
+body.ar .modules-grid{direction:rtl;}
+body.ar .team-grid{direction:rtl;}
+body.ar .finance-layout{direction:rtl;}
+body.ar .security-grid{direction:rtl;}
+
+/* ───────────────── RESPONSIVE ───────────────── */
+@media(max-width:900px){
+  .modules-grid{grid-template-columns:repeat(2,1fr);}
+  .flow-container{grid-template-columns:1fr;gap:12px;}
+  .flow-arrow{transform:rotate(90deg);padding:8px 0;}
+  body.ar .flow-arrow{transform:rotate(90deg);}
+  .impact-grid{grid-template-columns:repeat(2,1fr);}
+  .finance-layout{grid-template-columns:1fr;}
+  .team-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-top{grid-template-columns:1fr;gap:32px;}
+  .problem-grid{grid-template-columns:1fr;}
+  .security-grid{grid-template-columns:1fr;}
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+}
+@media(max-width:600px){
+  .modules-grid{grid-template-columns:1fr;}
+  .team-grid{grid-template-columns:1fr;}
+  .impact-grid{grid-template-columns:1fr;}
+  .ratio-grid{grid-template-columns:1fr;}
+  .lang-bar{top:80px;right:10px;}
+  .metrics-bar{flex-direction:column;}
+  .metric{border-right:none;border-bottom:1px solid var(--border);}
+}
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<!-- LANG TOGGLE -->
+<div class="lang-bar">
+  <button class="theme-btn" onclick="toggleTheme()" id="theme-toggle" title="Toggle theme">🌙</button>
+  <div style="width:1px;height:8px;background:var(--border2);border-radius:1px;"></div>
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+  <button class="lang-btn" onclick="setLang('ar')" id="btn-ar">عر</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+<div class="nav-logo-icon" style="background:none;padding:0;">
+  <svg width="40" height="40" viewBox="290 60 100 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="cg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#00e5ff"/>
+        <stop offset="100%" style="stop-color:#00b8d9"/>
+      </linearGradient>
+      <linearGradient id="ig" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#00e5ff"/>
+        <stop offset="100%" style="stop-color:#7c3aed"/>
+      </linearGradient>
+    </defs>
+    <rect x="290" y="60" width="100" height="100" rx="18" fill="#0c1220" stroke="#1e2f45" stroke-width="1"/>
+    <rect x="314" y="78" width="10" height="64" rx="2.5" fill="url(#cg)"/>
+    <rect x="314" y="78" width="38" height="9" rx="2.5" fill="url(#cg)"/>
+    <rect x="314" y="107" width="38" height="9" rx="2.5" fill="url(#cg)"/>
+    <rect x="344" y="78" width="8" height="38" rx="2.5" fill="url(#cg)"/>
+    <circle cx="352" cy="78" r="4" fill="#00e5ff"/>
+    <circle cx="352" cy="116" r="4" fill="#00e5ff"/>
+    <circle cx="314" cy="142" r="3.5" fill="#a855f7"/>
+    <rect x="358" y="133" width="6" height="9" rx="1.5" fill="#7c3aed" opacity="0.7"/>
+    <rect x="366" y="126" width="6" height="16" rx="1.5" fill="#7c3aed" opacity="0.85"/>
+    <rect x="374" y="119" width="6" height="23" rx="1.5" fill="url(#ig)"/>
+  </svg>
+</div>    <div class="nav-logo-text">Prospero<span> ERP</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="#modules" data-en="Modules" data-ar="الوحدات">Modules</a>
+    <a href="#finance" data-en="Financial AI" data-ar="الذكاء المالي">Financial AI</a>
+    <a href="#security" data-en="Security" data-ar="الأمان">Security</a>
+    <a href="#team" data-en="Team" data-ar="الفريق">Team</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('modules').scrollIntoView({behavior:'smooth'})" data-en="Explore System" data-ar="استكشف النظام">Explore System</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-badge" data-en="🚀 Smart Desktop ERP · Built for SMEs" data-ar="🚀 نظام ERP ذكي · مصمّم للشركات الصغيرة والمتوسطة">🚀 Smart Desktop ERP · Built for SMEs</div>
+  <h1 class="hero-title">
+    <span class="cyan" data-en="Control" data-ar="تحكّم">Control</span><br/>
+    <span class="line2" data-en="Your Business." data-ar="بعملك بالكامل.">Your Business.</span><br/>
+    <span data-en="Grow with Confidence." data-ar="وانمُ بثقة.">Grow with Confidence.</span>
+  </h1>
+  <p class="hero-sub" data-en="Prospero ERP is a powerful desktop solution that unifies sales, inventory, accounting, and financial reporting into one intelligent, integrated ecosystem." data-ar="بروسبيرو هو حل مكتبي متكامل يوحّد المبيعات والمخزون والمحاسبة والتقارير المالية في منظومة ذكية واحدة متكاملة.">
+    Prospero ERP is a powerful desktop solution that unifies sales, inventory, accounting, and financial reporting into one intelligent, integrated ecosystem.
+  </p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('modules').scrollIntoView({behavior:'smooth'})" data-en="Explore Features →" data-ar="استكشف المميزات →">Explore Features →</button>
+    <button class="btn-secondary" onclick="document.getElementById('howitworks').scrollIntoView({behavior:'smooth'})" data-en="See How It Works" data-ar="كيف يعمل؟">See How It Works</button>
+  </div>
+  <div class="metrics-bar">
+    <div class="metric">
+      <div class="metric-val">9</div>
+      <div class="metric-label" data-en="Core Modules" data-ar="وحدة متكاملة">Core Modules</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val purple">100%</div>
+      <div class="metric-label" data-en="Integrated Accounting" data-ar="محاسبة مدمجة">Integrated Accounting</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val green">Real-Time</div>
+      <div class="metric-label" data-en="Dashboard Analytics" data-ar="تحليلات لحظية">Dashboard Analytics</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val gold">AI</div>
+      <div class="metric-label" data-en="Powered Assistant" data-ar="مساعد ذكاء اصطناعي">Powered Assistant</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="section-wrap">
+    <p class="section-label" data-en="THE CHALLENGE" data-ar="التحدي">THE CHALLENGE</p>
+    <h2 class="section-title" data-en="Businesses Struggle with<br/>Fragmented Systems" data-ar="الشركات تعاني من<br/>أنظمة متشتتة">Businesses Struggle with<br/>Fragmented Systems</h2>
+    <div class="problem-grid reveal">
+      <div class="problem-card">
+        <div class="problem-icon">🔗</div>
+        <div>
+          <h3 data-en="Disconnected Operations" data-ar="عمليات منفصلة">Disconnected Operations</h3>
+          <p data-en="Sales data lives separately from accounting, creating costly reconciliation errors and blind spots in financial reporting." data-ar="بيانات المبيعات منفصلة عن المحاسبة، مما يسبب أخطاء تسوية مكلفة ونقاط عمياء في التقارير المالية.">Sales data lives separately from accounting, creating costly reconciliation errors and blind spots in financial reporting.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📦</div>
+        <div>
+          <h3 data-en="Manual Stock Tracking" data-ar="متابعة مخزون يدوية">Manual Stock Tracking</h3>
+          <p data-en="Spreadsheet-based inventory management leads to stockouts, expired products, and inaccurate reorder decisions." data-ar="إدارة المخزون عبر جداول بيانات تؤدي إلى نفاد المخزون ومنتجات منتهية الصلاحية وقرارات إعادة طلب خاطئة.">Spreadsheet-based inventory management leads to stockouts, expired products, and inaccurate reorder decisions.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">💳</div>
+        <div>
+          <h3 data-en="Poor Receivables Control" data-ar="ضعف متابعة الذمم">Poor Receivables Control</h3>
+          <p data-en="Without real-time tracking, unpaid invoices accumulate and customer debt management becomes a manual nightmare." data-ar="بدون تتبع لحظي، تتراكم الفواتير غير المدفوعة وتصبح إدارة ديون العملاء كابوساً يدوياً.">Without real-time tracking, unpaid invoices accumulate and customer debt management becomes a manual nightmare.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📊</div>
+        <div>
+          <h3 data-en="Zero Financial Visibility" data-ar="غياب الرؤية المالية">Zero Financial Visibility</h3>
+          <p data-en="Decision-makers operate without real-time KPIs, financial ratios, or executive dashboards — flying blind." data-ar="متخذو القرار يعملون بدون مؤشرات أداء لحظية أو نسب مالية أو لوحات تحكم تنفيذية — يطيرون بشكل أعمى.">Decision-makers operate without real-time KPIs, financial ratios, or executive dashboards — flying blind.</p>
+        </div>
+      </div>
+    </div>
+    <div class="problem-solution reveal">
+      <p data-en="Prospero solves all of this in <span>one structured, intelligent ecosystem.</span>" data-ar="بروسبيرو يحل كل هذا في <span>منظومة واحدة ذكية ومنظمة.</span>">Prospero solves all of this in <span>one structured, intelligent ecosystem.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section id="modules">
+  <div class="section-wrap">
+    <p class="section-label" data-en="CORE MODULES" data-ar="الوحدات الأساسية">CORE MODULES</p>
+    <h2 class="section-title" data-en="Everything Your Business Needs.<br/>Built Into One System." data-ar="كل ما تحتاجه شركتك.<br/>مدمج في نظام واحد.">Everything Your Business Needs.<br/>Built Into One System.</h2>
+    <p class="section-sub" data-en="Nine tightly integrated modules that communicate seamlessly, ensuring data consistency and operational excellence across every business function." data-ar="تسع وحدات متكاملة تتواصل بسلاسة، مضمونةً اتساق البيانات والتميّز التشغيلي عبر جميع وظائف العمل.">Nine tightly integrated modules that communicate seamlessly, ensuring data consistency and operational excellence across every business function.</p>
+    <div class="modules-grid reveal">
+
+      <div class="module-card mc-green">
+        <div class="module-icon">🛒</div>
+        <h3 data-en="Smart POS" data-ar="نقطة البيع الذكية">Smart POS</h3>
+        <p data-en="Real-time sales processing with invoice printing, split payment support, installment tracking, and automatic debt management across customers." data-ar="معالجة مبيعات لحظية مع طباعة فواتير، دعم الدفع المقسّم، تتبع الأقساط وإدارة الديون التلقائية للعملاء.">Real-time sales processing with invoice printing, split payment support, installment tracking, and automatic debt management across customers.</p>
+        <span class="module-tag" data-en="Sales Engine" data-ar="محرك المبيعات">Sales Engine</span>
+      </div>
+
+      <div class="module-card mc-cyan">
+        <div class="module-icon">📦</div>
+        <h3 data-en="Inventory Control" data-ar="إدارة المخزون">Inventory Control</h3>
+        <p data-en="Automated stock updates on every transaction, expiry date tracking with batch-level visibility, smart reorder alerts before stockouts occur." data-ar="تحديث تلقائي للمخزون عند كل معاملة، تتبع تاريخ الصلاحية بمستوى الدُفعة، تنبيهات إعادة الطلب الذكية قبل النفاد.">Automated stock updates on every transaction, expiry date tracking with batch-level visibility, smart reorder alerts before stockouts occur.</p>
+        <span class="module-tag" data-en="Inventory" data-ar="المخزون">Inventory</span>
+      </div>
+
+      <div class="module-card mc-gold">
+        <div class="module-icon">🏭</div>
+        <h3 data-en="Supplier Management" data-ar="إدارة الموردين">Supplier Management</h3>
+        <p data-en="Full purchase cycle tracking, credit limit management, supplier statements, and payment scheduling — all automatically linked to accounting." data-ar="تتبع دورة الشراء الكاملة، إدارة حد الائتمان، كشوف الموردين، وجدولة الدفعات — مرتبطة تلقائياً بالمحاسبة.">Full purchase cycle tracking, credit limit management, supplier statements, and payment scheduling — all automatically linked to accounting.</p>
+        <span class="module-tag" data-en="Procurement" data-ar="المشتريات">Procurement</span>
+      </div>
+
+      <div class="module-card mc-purple">
+        <div class="module-icon">👥</div>
+        <h3 data-en="Customer & Debtors" data-ar="العملاء والمدينون">Customer & Debtors</h3>
+        <p data-en="Comprehensive receivables management with payment history, balance monitoring, customer statements, and overdue tracking for better cash flow." data-ar="إدارة شاملة للذمم المدينة مع سجل الدفعات، مراقبة الأرصدة، كشوف العملاء، وتتبع المتأخرات لتدفق نقدي أفضل.">Comprehensive receivables management with payment history, balance monitoring, customer statements, and overdue tracking for better cash flow.</p>
+        <span class="module-tag" data-en="CRM + AR" data-ar="إدارة العملاء">CRM + AR</span>
+      </div>
+
+      <div class="module-card mc-red">
+        <div class="module-icon">📒</div>
+        <h3 data-en="Integrated Accounting" data-ar="المحاسبة المدمجة">Integrated Accounting</h3>
+        <p data-en="Automatic double-entry journal generation on every business event. Cost center management, full chart of accounts, and financial structure built in." data-ar="توليد تلقائي لقيود القيد المزدوج عند كل حدث تجاري. إدارة مراكز التكلفة ودليل الحسابات الكامل والهيكل المالي مدمج.">Automatic double-entry journal generation on every business event. Cost center management, full chart of accounts, and financial structure built in.</p>
+        <span class="module-tag" data-en="Accounting Engine" data-ar="محرك المحاسبة">Accounting Engine</span>
+      </div>
+
+      <div class="module-card mc-cyan">
+        <div class="module-icon">📈</div>
+        <h3 data-en="Executive Dashboard" data-ar="لوحة التحكم التنفيذية">Executive Dashboard</h3>
+        <p data-en="Live KPIs, financial ratios (ROE, ROA, Debt/Equity), low-stock alerts, revenue trends, and real-time analytics refreshed automatically." data-ar="مؤشرات KPI حية، نسب مالية (ROE, ROA, الدين/حقوق الملكية)، تنبيهات المخزون المنخفض، ومؤشرات الإيرادات تُحدَّث تلقائياً.">Live KPIs, financial ratios (ROE, ROA, Debt/Equity), low-stock alerts, revenue trends, and real-time analytics refreshed automatically.</p>
+        <span class="module-tag" data-en="Analytics" data-ar="التحليلات">Analytics</span>
+      </div>
+
+      <div class="module-card mc-purple">
+        <div class="module-icon">📋</div>
+        <h3 data-en="Financial Reports" data-ar="التقارير المالية">Financial Reports</h3>
+        <p data-en="Fully automated income statement, balance sheet, and cash flow statement. Export-ready with Arabic and English formatting support." data-ar="قائمة دخل وميزانية عمومية وبيان تدفق نقدي مؤتمتة بالكامل. جاهزة للتصدير بدعم التنسيق العربي والإنجليزي.">Fully automated income statement, balance sheet, and cash flow statement. Export-ready with Arabic and English formatting support.</p>
+        <span class="module-tag" data-en="Financial Statements" data-ar="القوائم المالية">Financial Statements</span>
+      </div>
+
+      <div class="module-card mc-gold">
+        <div class="module-icon">⚙️</div>
+        <h3 data-en="Settings & Security" data-ar="الإعدادات والأمان">Settings & Security</h3>
+        <p data-en="Page-level password protection, role-based permissions, theme management (light/dark), bilingual switching, and data reset tools." data-ar="حماية بكلمة مرور على مستوى الصفحة، صلاحيات قائمة على الأدوار، إدارة السمات (فاتح/داكن)، التبديل ثنائي اللغة وأدوات إعادة التعيين.">Page-level password protection, role-based permissions, theme management (light/dark), bilingual switching, and data reset tools.</p>
+        <span class="module-tag" data-en="Security" data-ar="الأمان">Security</span>
+      </div>
+
+      <div class="module-card mc-green" style="background:linear-gradient(135deg,rgba(0,255,136,0.05),rgba(0,229,255,0.05));">
+        <div class="module-icon">🤖</div>
+        <h3 data-en="Prospero Pro Assistant" data-ar="مساعد بروسبيرو برو">Prospero Pro Assistant</h3>
+        <p data-en="AI-powered business assistant with command-based operations, permission validation, contextual financial insights, and smart workflow automation." data-ar="مساعد أعمال مدعوم بالذكاء الاصطناعي مع عمليات قائمة على الأوامر، التحقق من الصلاحيات، رؤى مالية سياقية وأتمتة سير عمل ذكية.">AI-powered business assistant with command-based operations, permission validation, contextual financial insights, and smart workflow automation.</p>
+        <span class="module-tag" data-en="✨ AI Powered" data-ar="✨ مدعوم بالذكاء الاصطناعي">✨ AI Powered</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="howitworks">
+  <div class="section-wrap">
+    <p class="section-label" data-en="SYSTEM ARCHITECTURE" data-ar="هندسة النظام">SYSTEM ARCHITECTURE</p>
+    <h2 class="section-title" data-en="One Transaction.<br/>Full System Impact." data-ar="معاملة واحدة.<br/>أثر على النظام بأكمله.">One Transaction.<br/>Full System Impact.</h2>
+    <p class="section-sub" data-en="When a sale is completed in Prospero, a cascade of automated processes ensures every module stays in perfect sync — no manual intervention required." data-ar="عند إتمام عملية بيع في بروسبيرو، سلسلة من العمليات الآلية تضمن بقاء كل وحدة في تزامن تام — دون الحاجة لأي تدخل يدوي.">When a sale is completed in Prospero, a cascade of automated processes ensures every module stays in perfect sync — no manual intervention required.</p>
+    <div class="flow-container reveal">
+      <div class="flow-step">
+        <div class="flow-step-num">1</div>
+        <h4 data-en="Sale Completed" data-ar="إتمام البيع">Sale Completed</h4>
+        <p data-en="POS records invoice & payment" data-ar="نقطة البيع تسجّل الفاتورة والدفع">POS records invoice & payment</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-num">2</div>
+        <h4 data-en="Inventory Updated" data-ar="تحديث المخزون">Inventory Updated</h4>
+        <p data-en="Stock levels auto-deducted in real-time" data-ar="مستويات المخزون تُخصم تلقائياً">Stock levels auto-deducted in real-time</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-num">3</div>
+        <h4 data-en="Journal Created" data-ar="إنشاء القيد">Journal Created</h4>
+        <p data-en="Double-entry accounting generated instantly" data-ar="القيد المزدوج يُولَّد فوراً">Double-entry accounting generated instantly</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-num">4</div>
+        <h4 data-en="Dashboard Refreshed" data-ar="تحديث لوحة التحكم">Dashboard Refreshed</h4>
+        <p data-en="KPIs, reports & ratios update dynamically" data-ar="المؤشرات والتقارير تتحدث ديناميكياً">KPIs, reports & ratios update dynamically</p>
+      </div>
+    </div>
+    <div class="impact-grid reveal">
+      <div class="impact-card">
+        <div class="impact-icon">⚡</div>
+        <div class="impact-title" data-en="Zero Manual Entry" data-ar="لا إدخال يدوي">Zero Manual Entry</div>
+        <div class="impact-text" data-en="All accounting journals are generated automatically from business events." data-ar="جميع القيود المحاسبية تُولَّد تلقائياً من الأحداث التجارية.">All accounting journals are generated automatically from business events.</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-icon">🔄</div>
+        <div class="impact-title" data-en="Full Synchronization" data-ar="تزامن كامل">Full Synchronization</div>
+        <div class="impact-text" data-en="Every module reflects changes the moment a transaction is recorded." data-ar="كل وحدة تعكس التغييرات لحظة تسجيل المعاملة.">Every module reflects changes the moment a transaction is recorded.</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-icon">🎯</div>
+        <div class="impact-title" data-en="Financial Integrity" data-ar="سلامة مالية">Financial Integrity</div>
+        <div class="impact-text" data-en="Double-entry rules enforced at the system level — errors are structurally impossible." data-ar="قواعد القيد المزدوج مُفعَّلة على مستوى النظام — الأخطاء مستحيلة هيكلياً.">Double-entry rules enforced at the system level — errors are structurally impossible.</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-icon">📡</div>
+        <div class="impact-title" data-en="Live Intelligence" data-ar="ذكاء لحظي">Live Intelligence</div>
+        <div class="impact-text" data-en="Executive dashboard and financial ratios refresh automatically after every transaction." data-ar="لوحة التحكم التنفيذية والنسب المالية تتحدث تلقائياً بعد كل معاملة.">Executive dashboard and financial ratios refresh automatically after every transaction.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCIAL INTELLIGENCE -->
+<section id="finance">
+  <div class="section-wrap">
+    <p class="section-label" data-en="FINANCIAL INTELLIGENCE" data-ar="الذكاء المالي">FINANCIAL INTELLIGENCE</p>
+    <h2 class="section-title" data-en="Enterprise-Grade Accounting.<br/>Built In By Default." data-ar="محاسبة على مستوى المؤسسات.<br/>مدمجة افتراضياً.">Enterprise-Grade Accounting.<br/>Built In By Default.</h2>
+    <div class="finance-layout reveal">
+      <div class="finance-visual">
+        <div class="ratio-grid">
+          <div class="ratio-item">
+            <div class="ratio-name">ROE</div>
+            <div class="ratio-val">18.4%</div>
+            <div class="ratio-change">↑ Real-time</div>
+          </div>
+          <div class="ratio-item">
+            <div class="ratio-name">ROA</div>
+            <div class="ratio-val">12.1%</div>
+            <div class="ratio-change">↑ Auto-calc</div>
+          </div>
+          <div class="ratio-item">
+            <div class="ratio-name" data-en="Debt/Equity" data-ar="الدين/حقوق الملكية">Debt/Equity</div>
+            <div class="ratio-val">0.52</div>
+            <div class="ratio-change">↓ Optimized</div>
+          </div>
+          <div class="ratio-item">
+            <div class="ratio-name" data-en="Current Ratio" data-ar="نسبة التداول">Current Ratio</div>
+            <div class="ratio-val">2.3x</div>
+            <div class="ratio-change">↑ Healthy</div>
+          </div>
+        </div>
+        <div class="journal-entry">
+          <div style="color:var(--text3);margin-bottom:8px;font-family:var(--font-en);font-size:11px;" data-en="// Auto-generated journal entry" data-ar="// قيد محاسبي مُولَّد تلقائياً">// Auto-generated journal entry</div>
+          <div class="dr">DR  Accounts Receivable ......... 1,500</div>
+          <div style="height:4px;"></div>
+          <div class="cr">&nbsp;&nbsp;&nbsp;&nbsp;CR  Sales Revenue ................. 1,500</div>
+          <div style="height:4px;"></div>
+          <div class="dr">DR  Cost of Goods Sold ........... 900</div>
+          <div style="height:4px;"></div>
+          <div class="cr">&nbsp;&nbsp;&nbsp;&nbsp;CR  Inventory ..................... 900</div>
+          <div style="margin-top:10px;color:var(--green);font-size:11px;" data-en="✓ Balance verified · Generated in 0ms" data-ar="✓ الميزان مُحقَّق · تم التوليد في 0ms">✓ Balance verified · Generated in 0ms</div>
+        </div>
+      </div>
+      <div class="finance-points">
+        <div class="finance-point">
+          <div class="fp-icon">📒</div>
+          <div>
+            <h4 data-en="Automatic Double-Entry" data-ar="القيد المزدوج التلقائي">Automatic Double-Entry</h4>
+            <p data-en="Every sale, purchase, payment, and return generates perfectly balanced journal entries — instantly and without manual intervention." data-ar="كل عملية بيع أو شراء أو دفع أو مرتجع تُولّد قيوداً محاسبية متوازنة تماماً — فوراً ودون تدخل يدوي.">Every sale, purchase, payment, and return generates perfectly balanced journal entries — instantly and without manual intervention.</p>
+          </div>
+        </div>
+        <div class="finance-point">
+          <div class="fp-icon">📊</div>
+          <div>
+            <h4 data-en="Real-Time Financial Statements" data-ar="قوائم مالية لحظية">Real-Time Financial Statements</h4>
+            <p data-en="Income statement, balance sheet, and cash flow are always current — reflecting every transaction the moment it's recorded." data-ar="قائمة الدخل والميزانية العمومية والتدفق النقدي دائماً محدّثة — تعكس كل معاملة لحظة تسجيلها.">Income statement, balance sheet, and cash flow are always current — reflecting every transaction the moment it's recorded.</p>
+          </div>
+        </div>
+        <div class="finance-point">
+          <div class="fp-icon">🎯</div>
+          <div>
+            <h4 data-en="Executive Financial Ratios" data-ar="النسب المالية التنفيذية">Executive Financial Ratios</h4>
+            <p data-en="ROE, ROA, Debt-to-Equity, Current Ratio and more — calculated automatically and displayed on the executive dashboard for strategic decisions." data-ar="العائد على حقوق الملكية، العائد على الأصول، نسبة الدين/حقوق الملكية، نسبة التداول وأكثر — تُحسب تلقائياً وتُعرض على اللوحة التنفيذية.">ROE, ROA, Debt-to-Equity, Current Ratio and more — calculated automatically and displayed on the executive dashboard for strategic decisions.</p>
+          </div>
+        </div>
+        <div class="finance-point">
+          <div class="fp-icon">🏢</div>
+          <div>
+            <h4 data-en="Cost Center Management" data-ar="إدارة مراكز التكلفة">Cost Center Management</h4>
+            <p data-en="Track profitability across departments, products, and business units with a fully structured chart of accounts and cost allocation." data-ar="تتبع الربحية عبر الأقسام والمنتجات ووحدات الأعمال بدليل حسابات منظم كامل وتوزيع التكاليف.">Track profitability across departments, products, and business units with a fully structured chart of accounts and cost allocation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section id="security">
+  <div class="section-wrap">
+    <p class="section-label" data-en="SECURITY & CONTROL" data-ar="الأمان والتحكم">SECURITY & CONTROL</p>
+    <h2 class="section-title" data-en="Built For Trust.<br/>Designed For Control." data-ar="مبني للثقة.<br/>مصمّم للتحكم.">Built For Trust.<br/>Designed For Control.</h2>
+    <div class="security-grid reveal">
+      <div class="sec-card">
+        <div class="sec-icon">🔐</div>
+        <h3 data-en="Page-Level Protection" data-ar="حماية على مستوى الصفحة">Page-Level Protection</h3>
+        <p data-en="Sensitive modules are individually protected with customizable password layers, preventing unauthorized access to critical financial and operational data." data-ar="الوحدات الحساسة محمية بشكل فردي بطبقات كلمة مرور قابلة للتخصيص، مما يمنع الوصول غير المصرح به للبيانات المالية والتشغيلية الحساسة.">Sensitive modules are individually protected with customizable password layers, preventing unauthorized access to critical financial and operational data.</p>
+        <div class="sec-features">
+          <div class="sec-feature" data-en="Module-level password locking" data-ar="قفل كلمة المرور على مستوى الوحدة">Module-level password locking</div>
+          <div class="sec-feature" data-en="Admin override capabilities" data-ar="قدرات تجاوز المشرف">Admin override capabilities</div>
+          <div class="sec-feature" data-en="Session-based access control" data-ar="التحكم في الوصول القائم على الجلسة">Session-based access control</div>
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon">👤</div>
+        <h3 data-en="Role-Based Permissions" data-ar="صلاحيات قائمة على الأدوار">Role-Based Permissions</h3>
+        <p data-en="Define exactly what each user can see and do. Separate admin and standard user capabilities with granular control over every system feature." data-ar="حدد بالضبط ما يمكن لكل مستخدم رؤيته وفعله. افصل بين قدرات المشرف والمستخدم العادي بتحكم دقيق في كل ميزة من ميزات النظام.">Define exactly what each user can see and do. Separate admin and standard user capabilities with granular control over every system feature.</p>
+        <div class="sec-features">
+          <div class="sec-feature" data-en="Admin & standard user roles" data-ar="أدوار المشرف والمستخدم العادي">Admin & standard user roles</div>
+          <div class="sec-feature" data-en="Feature-level access control" data-ar="التحكم في الوصول على مستوى الميزة">Feature-level access control</div>
+          <div class="sec-feature" data-en="AI assistant permission gating" data-ar="بوابة صلاحيات المساعد الذكي">AI assistant permission gating</div>
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon">👁️</div>
+        <h3 data-en="Inventory Visibility Control" data-ar="التحكم في رؤية المخزون">Inventory Visibility Control</h3>
+        <p data-en="Choose who can view stock quantities, purchase costs, and supplier pricing. Protect sensitive business intelligence from unauthorized staff." data-ar="اختر من يمكنه رؤية كميات المخزون وتكاليف الشراء وأسعار الموردين. احمِ المعلومات التجارية الحساسة من الموظفين غير المصرح لهم.">Choose who can view stock quantities, purchase costs, and supplier pricing. Protect sensitive business intelligence from unauthorized staff.</p>
+        <div class="sec-features">
+          <div class="sec-feature" data-en="Cost price visibility toggle" data-ar="تبديل رؤية سعر التكلفة">Cost price visibility toggle</div>
+          <div class="sec-feature" data-en="Stock quantity access control" data-ar="التحكم في الوصول لكمية المخزون">Stock quantity access control</div>
+          <div class="sec-feature" data-en="Supplier data protection" data-ar="حماية بيانات الموردين">Supplier data protection</div>
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon">🛡️</div>
+        <h3 data-en="Data Integrity & Reset Tools" data-ar="سلامة البيانات وأدوات الإعادة">Data Integrity & Reset Tools</h3>
+        <p data-en="Comprehensive data management including selective resets, backup workflows, and integrity verification to maintain clean, reliable business records." data-ar="إدارة شاملة للبيانات تشمل إعادة التعيين الانتقائية وسير عمل النسخ الاحتياطي والتحقق من السلامة للحفاظ على سجلات أعمال نظيفة وموثوقة.">Comprehensive data management including selective resets, backup workflows, and integrity verification to maintain clean, reliable business records.</p>
+        <div class="sec-features">
+          <div class="sec-feature" data-en="Selective module data reset" data-ar="إعادة تعيين بيانات الوحدة بشكل انتقائي">Selective module data reset</div>
+          <div class="sec-feature" data-en="Audit trail preservation" data-ar="الحفاظ على مسار المراجعة">Audit trail preservation</div>
+          <div class="sec-feature" data-en="Database integrity checks" data-ar="فحوصات سلامة قاعدة البيانات">Database integrity checks</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-wrap">
+    <p class="section-label" data-en="THE TEAM" data-ar="الفريق">THE TEAM</p>
+    <h2 class="section-title" data-en="Built by Dedicated<br/>Developers & Innovators" data-ar="بُني من قِبل مطورين<br/>ومبتكرين متفانين">Built by Dedicated<br/>Developers & Innovators</h2>
+    <p class="section-sub" data-en="Prospero ERP was engineered by a passionate team combining deep expertise in software engineering, financial systems, and business operations." data-ar="تم تصميم Prospero ERP من قبل فريق متحمس يجمع بين الخبرة العميقة في هندسة البرمجيات والأنظمة المالية وعمليات الأعمال.">Prospero ERP was engineered by a passionate team combining deep expertise in software engineering, financial systems, and business operations.</p>
+    <div class="team-grid reveal">
+
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#00e5ff,#7c3aed);">A</div>
+        <div class="team-name" data-en="Sara" data-ar="أحمد رواشدة">Ahmad Rawashdeh</div>
+        <div class="team-role" data-en="Lead Developer & Architect" data-ar="المطور الرئيسي ">Lead Developer & Architect</div>
+        <div class="team-dept" data-en="Full-Stack · ERP Design · AI Integration" data-ar="Full-Stack · تصميم ERP · تكامل الذكاء الاصطناعي">Full-Stack · ERP Design · AI Integration</div>
+        <div class="team-tags">
+          <span class="team-tag">Python</span>
+          <span class="team-tag">PyQt6</span>
+          <span class="team-tag">SQLite</span>
+          <span class="team-tag">AI</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#a855f7,#00e5ff);">N</div>
+        <div class="team-name" data-en="Financial Systems Lead" data-ar="نرمين أبو زينة">Narmin Abu Zainah</div>
+        <div class="team-role" data-en="Accounting Engine & Reporting" data-ar="محرك المحاسبة والتقارير">Accounting Engine & Reporting</div>
+        <div class="team-dept" data-en="Finance · Accounting · Business Logic" data-ar="التمويل · المحاسبة · منطق الأعمال">Finance · Accounting · Business Logic</div>
+        <div class="team-tags">
+          <span class="team-tag" data-en="Double-Entry" data-ar="القيد المزدوج">Double-Entry</span>
+          <span class="team-tag" data-en="Financial Ratios" data-ar="النسب المالية">Financial Ratios</span>
+          <span class="team-tag" data-en="Reports" data-ar="التقارير">Reports</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">S</div>
+        <div class="team-name" data-en="UX & Systems Engineer" data-ar="سارة سلطان">Sara Sultan</div>
+        <div class="team-role" data-en="Interface Design & Integration" data-ar="تصميم الواجهة والتكامل">Interface Design & Integration</div>
+        <div class="team-dept" data-en="UI/UX · Module Integration · Testing" data-ar="UI/UX · تكامل الوحدات · الاختبار">UI/UX · Module Integration · Testing</div>
+        <div class="team-tags">
+          <span class="team-tag">PyQt6</span>
+          <span class="team-tag" data-en="Design Systems" data-ar="أنظمة التصميم">Design Systems</span>
+          <span class="team-tag">QA</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="tech-banner" style="margin-top:60px;border-radius:20px;border:1px solid var(--border);">
+      <p data-en="BUILT WITH" data-ar="مبني بـ">BUILT WITH</p>
+      <div class="tech-pills">
+        <span class="tech-pill">Python 3.12</span>
+        <span class="tech-pill">PyQt6</span>
+        <span class="tech-pill">SQLite</span>
+        <span class="tech-pill">ReportLab</span>
+        <span class="tech-pill">Arabic Reshaper</span>
+        <span class="tech-pill" data-en="OpenAI API" data-ar="OpenAI API">OpenAI API</span>
+        <span class="tech-pill" data-en="PyQt6 Charts" data-ar="PyQt6 Charts">PyQt6 Charts</span>
+        <span class="tech-pill" data-en="BIDI Algorithm" data-ar="خوارزمية BIDI">BIDI Algorithm</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section id="vision">
+  <div class="vision-glow"></div>
+  <div class="vision-quote reveal">
+    <span data-en="Prospero is built to become the " data-ar="بروسبيرو مبني ليكون ">Prospero is built to become the </span>
+    <span class="highlight" data-en="operational backbone" data-ar="العمود الفقري التشغيلي">operational backbone</span>
+    <span data-en=" of growing businesses — delivering financial integrity, operational consistency, and real-time intelligence." data-ar=" للشركات النامية — بتقديم السلامة المالية والاتساق التشغيلي والذكاء اللحظي."> of growing businesses — delivering financial integrity, operational consistency, and real-time intelligence.</span>
+  </div>
+  <p class="vision-desc" data-en="Prospero ERP is a structured desktop ecosystem designed for SMEs that demand precision, accountability, and the kind of financial intelligence once reserved for enterprise-grade systems." data-ar="Prospero ERP هو منظومة مكتبية منظمة مصممة للشركات الصغيرة والمتوسطة التي تتطلب الدقة والمساءلة ونوع الذكاء المالي المخصص للأنظمة على مستوى المؤسسات.">
+    Prospero ERP is a structured desktop ecosystem designed for SMEs that demand precision, accountability, and the kind of financial intelligence once reserved for enterprise-grade systems.
+  </p>
+  <div class="vision-pills">
+    <span class="vision-pill" data-en="🖥 Desktop Performance" data-ar="🖥 أداء سطح المكتب">🖥 Desktop Performance</span>
+    <span class="vision-pill" data-en="🤖 AI-Assisted Operations" data-ar="🤖 عمليات مدعومة بالذكاء الاصطناعي">🤖 AI-Assisted Operations</span>
+    <span class="vision-pill" data-en="📊 Financial Integrity" data-ar="📊 سلامة مالية">📊 Financial Integrity</span>
+    <span class="vision-pill" data-en="🌐 Bilingual Support" data-ar="🌐 دعم ثنائي اللغة">🌐 Bilingual Support</span>
+    <span class="vision-pill" data-en="🔒 Enterprise Security" data-ar="🔒 أمان مؤسسي">🔒 Enterprise Security</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:12px;">
+<div class="nav-logo-icon" style="background:none;padding:0;">
+  <svg width="40" height="40" viewBox="290 60 100 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="cg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#00e5ff"/>
+        <stop offset="100%" style="stop-color:#00b8d9"/>
+      </linearGradient>
+      <linearGradient id="ig" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#00e5ff"/>
+        <stop offset="100%" style="stop-color:#7c3aed"/>
+      </linearGradient>
+    </defs>
+    <rect x="290" y="60" width="100" height="100" rx="18" fill="#0c1220" stroke="#1e2f45" stroke-width="1"/>
+    <rect x="314" y="78" width="10" height="64" rx="2.5" fill="url(#cg)"/>
+    <rect x="314" y="78" width="38" height="9" rx="2.5" fill="url(#cg)"/>
+    <rect x="314" y="107" width="38" height="9" rx="2.5" fill="url(#cg)"/>
+    <rect x="344" y="78" width="8" height="38" rx="2.5" fill="url(#cg)"/>
+    <circle cx="352" cy="78" r="4" fill="#00e5ff"/>
+    <circle cx="352" cy="116" r="4" fill="#00e5ff"/>
+    <circle cx="314" cy="142" r="3.5" fill="#a855f7"/>
+    <rect x="358" y="133" width="6" height="9" rx="1.5" fill="#7c3aed" opacity="0.7"/>
+    <rect x="366" y="126" width="6" height="16" rx="1.5" fill="#7c3aed" opacity="0.85"/>
+    <rect x="374" y="119" width="6" height="23" rx="1.5" fill="url(#ig)"/>
+  </svg>
+</div>          <div class="nav-logo-text">Prospero<span> ERP</span></div>
+        </div>
+        <p data-en="Desktop Business Intelligence Platform. Built for precision. Designed for growth." data-ar="منصة ذكاء الأعمال المكتبية. مبنية للدقة. مصممة للنمو.">Desktop Business Intelligence Platform. Built for precision. Designed for growth.</p>
+      </div>
+      <div class="footer-links">
+        <h4 data-en="System" data-ar="النظام">System</h4>
+        <ul>
+          <li><a href="#modules" data-en="Core Modules" data-ar="الوحدات الأساسية">Core Modules</a></li>
+          <li><a href="#finance" data-en="Financial Engine" data-ar="المحرك المالي">Financial Engine</a></li>
+          <li><a href="#security" data-en="Security" data-ar="الأمان">Security</a></li>
+          <li><a href="#howitworks" data-en="How It Works" data-ar="كيف يعمل">How It Works</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4 data-en="Company" data-ar="الشركة">Company</h4>
+        <ul>
+          <li><a href="#team" data-en="Our Team" data-ar="فريقنا">Our Team</a></li>
+          <li><a href="#vision" data-en="Vision" data-ar="الرؤية">Vision</a></li>
+          <li><a href="#problem" data-en="The Problem We Solve" data-ar="المشكلة التي نحلها">The Problem We Solve</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-en="© 2025 Prospero ERP · All rights reserved." data-ar="© 2025 Prospero ERP · جميع الحقوق محفوظة.">© 2025 Prospero ERP · All rights reserved.</p>
+      <div class="footer-badge">
+        <span style="width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block;"></span>
+        <span data-en="System Operational" data-ar="النظام يعمل">System Operational</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ───── THEME TOGGLE ─────
+function toggleTheme() {
+  const isLight = document.body.classList.toggle('light');
+  document.getElementById('theme-toggle').textContent = isLight ? '☀️' : '🌙';
+  localStorage.setItem('prospero-theme', isLight ? 'light' : 'dark');
+}
+
+// Load saved theme
+(function(){
+  const saved = localStorage.getItem('prospero-theme');
+  if(saved === 'light'){
+    document.body.classList.add('light');
+    document.getElementById('theme-toggle').textContent = '☀️';
+  }
+})();
+
+// ───── LANGUAGE SYSTEM ─────
+function setLang(lang) {
+  const isAr = lang === 'ar';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+  document.body.classList.toggle('ar', isAr);
+
+  document.getElementById('btn-en').classList.toggle('active', !isAr);
+  document.getElementById('btn-ar').classList.toggle('active', isAr);
+
+  document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = val;
+    } else {
+      el.innerHTML = val;
+    }
+  });
+
+  // Fix font for Arabic
+  const titleFont = isAr ? "'Cairo', sans-serif" : "'Syne', sans-serif";
+  document.querySelectorAll('.section-title, .hero-title, .vision-quote, .metric-val').forEach(el => {
+    el.style.fontFamily = titleFont;
+    el.style.letterSpacing = isAr ? '0' : '-1px';
+  });
+}
+
+// ───── SCROLL REVEAL ─────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ───── NAV SCROLL EFFECT ─────
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 50) {
+    nav.style.borderBottomColor = 'rgba(30,47,69,0.9)';
+    nav.style.background = 'rgba(6,10,16,0.95)';
+  } else {
+    nav.style.borderBottomColor = 'rgba(30,47,69,0.6)';
+    nav.style.background = 'rgba(6,10,16,0.85)';
+  }
+});
+
+// ───── COUNTER ANIMATION ─────
+function animateCounters() {
+  document.querySelectorAll('.metric-val').forEach(el => {
+    const text = el.textContent.trim();
+    if (!isNaN(parseFloat(text))) {
+      const target = parseFloat(text);
+      let current = 0;
+      const step = target / 30;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = Number.isInteger(target) ? Math.round(current) : current.toFixed(1);
+        if (current >= target) clearInterval(timer);
+      }, 30);
+    }
+  });
+}
+
+// Trigger counter on hero load
+setTimeout(animateCounters, 600);
+
+// ───── SUBTLE MOUSE PARALLAX ─────
+document.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 20;
+  const y = (e.clientY / window.innerHeight - 0.5) * 20;
+  const glow = document.querySelector('.hero-glow');
+  const glow2 = document.querySelector('.hero-glow2');
+  if (glow) glow.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+  if (glow2) glow2.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+});
+</script>
+</body>
+</html>

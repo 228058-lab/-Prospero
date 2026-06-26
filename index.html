@@ -1,0 +1,1342 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InvestProspero | حاسبة اللوت والربح</title>
+  <meta name="description" content="InvestProspero - حاسبة لوت وهدف ربح للذهب والفوركس بدون قاعدة بيانات." />
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --bg-soft:#eef3f9;
+      --card:#ffffff;
+      --text:#16324a;
+      --muted:#6a7d90;
+      --primary:#1f4e79;
+      --primary-dark:#183d5f;
+      --accent:#d7b46a;
+      --accent-soft:#f6edd9;
+      --line:#dbe5ef;
+      --line-strong:#c9d6e4;
+      --success:#1e7b4f;
+      --warning:#b77716;
+      --danger:#b94a48;
+      --shadow:0 16px 38px rgba(31, 78, 121, .10);
+      --radius:22px;
+      --radius-sm:16px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Tahoma, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(31,78,121,.08), transparent 26%),
+        radial-gradient(circle at bottom left, rgba(215,180,106,.10), transparent 22%),
+        var(--bg);
+      line-height:1.7;
+    }
+
+    .container{
+      width:min(1160px, calc(100% - 24px));
+      margin:0 auto;
+    }
+
+    .topbar{padding:18px 0 0}
+
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      background:rgba(255,255,255,.84);
+      backdrop-filter: blur(10px);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:12px 16px;
+      box-shadow:0 10px 28px rgba(22,50,74,.06);
+    }
+
+    .logo-wrap{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .logo{
+      width:52px;
+      height:52px;
+      border-radius:16px;
+      background:linear-gradient(145deg, var(--primary), var(--primary-dark));
+      display:grid;
+      place-items:center;
+      box-shadow:0 10px 24px rgba(31,78,121,.18);
+      flex:none;
+    }
+
+    .logo svg{width:34px;height:34px}
+
+    .brand h1{
+      margin:0;
+      font-size:22px;
+      color:var(--primary-dark);
+      line-height:1.2;
+    }
+
+    .brand p{
+      margin:3px 0 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:var(--primary-dark);
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:14px;
+      transition:.18s ease;
+    }
+
+    .nav-links a:hover{
+      background:#eef4fa;
+      color:var(--primary);
+    }
+
+    .hero{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:1.12fr .88fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .hero-card, .hero-side{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card{
+      padding:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,1), rgba(248,251,255,1));
+    }
+
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--accent-soft);
+      color:#8c6a28;
+      font-weight:800;
+      font-size:13px;
+      margin-bottom:16px;
+    }
+
+    .hero-badge span{
+      width:9px;height:9px;border-radius:50%;
+      background:var(--accent);
+    }
+
+    .hero-card h2{
+      margin:0;
+      font-size:clamp(28px, 4vw, 46px);
+      line-height:1.25;
+      letter-spacing:-.5px;
+      color:var(--primary-dark);
+    }
+
+    .hero-card h2 em{
+      font-style:normal;
+      color:var(--primary);
+    }
+
+    .hero-card p{
+      margin:14px 0 0;
+      color:var(--muted);
+      font-size:16px;
+      max-width:760px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+
+    .btn{
+      border:0;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:15px;
+      cursor:pointer;
+      font-weight:800;
+      font-size:15px;
+      transition:.18s ease;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+      box-shadow:0 12px 26px rgba(31,78,121,.18);
+    }
+
+    .btn-primary:hover{transform:translateY(-1px)}
+
+    .btn-soft{
+      color:var(--primary-dark);
+      background:#eff4f9;
+      border:1px solid var(--line);
+    }
+
+    .btn-soft:hover{background:#e5edf6}
+
+    .hero-side{
+      padding:20px;
+      display:grid;
+      gap:12px;
+      align-content:start;
+      background:linear-gradient(180deg, #ffffff, #fbfdff);
+    }
+
+    .mini-stat{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px;
+      background:#fff;
+      transition:.18s ease;
+    }
+
+    .mini-stat:hover{
+      transform:translateY(-2px);
+      border-color:var(--line-strong);
+    }
+
+    .mini-stat small{
+      display:block;
+      color:var(--muted);
+      font-weight:700;
+      margin-bottom:6px;
+    }
+
+    .mini-stat strong{
+      display:block;
+      color:var(--primary-dark);
+      font-size:22px;
+    }
+
+    .mini-stat span{
+      display:block;
+      margin-top:5px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .ticker-wrap{
+      margin-top:16px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:999px;
+      overflow:hidden;
+      box-shadow:0 10px 24px rgba(22,50,74,.05);
+    }
+
+    .ticker{
+      display:flex;
+      gap:10px;
+      padding:12px;
+      width:max-content;
+      animation:slide 24s linear infinite;
+    }
+
+    .ticker:hover{animation-play-state:paused}
+
+    .ticker-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+      padding:9px 14px;
+      background:#f8fbfe;
+      border:1px solid #e4edf6;
+      border-radius:999px;
+      min-width:150px;
+      justify-content:center;
+    }
+
+    .ticker-dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--primary);
+    }
+
+    .up{color:var(--success); font-weight:800}
+    .down{color:var(--danger); font-weight:800}
+
+    @keyframes slide{
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
+    }
+
+    .section{
+      margin-top:20px;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:18px 22px;
+      border-bottom:1px solid var(--line);
+      background:#fbfdff;
+    }
+
+    .section-head h3{
+      margin:0;
+      color:var(--primary-dark);
+      font-size:21px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#eff5fa;
+      color:var(--primary);
+      font-weight:800;
+      font-size:13px;
+      border:1px solid #dde7f1;
+    }
+
+    .calc-grid{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:20px;
+      padding:22px;
+      align-items:start;
+    }
+
+    .form-box, .result-box{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:linear-gradient(180deg, #ffffff, #fbfdff);
+      padding:20px;
+    }
+
+    .mode-tabs{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+      margin-bottom:16px;
+    }
+
+    .mode-tabs input{display:none}
+
+    .mode-tabs label{
+      display:block;
+      text-align:center;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:13px 12px;
+      cursor:pointer;
+      background:#fff;
+      color:var(--primary-dark);
+      font-weight:800;
+      transition:.18s ease;
+      user-select:none;
+    }
+
+    .mode-tabs label:hover{background:#f7fbff}
+
+    .mode-tabs input:checked + label{
+      background:#edf4fb;
+      border-color:#bfd0e1;
+      color:var(--primary);
+      box-shadow:0 8px 18px rgba(31,78,121,.08);
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:14px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+    }
+
+    .field label{
+      color:var(--primary-dark);
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .field .sub{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:-1px;
+    }
+
+    input, select{
+      width:100%;
+      height:48px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fff;
+      color:var(--text);
+      padding:0 13px;
+      font-size:15px;
+      outline:none;
+      transition:.18s ease;
+    }
+
+    input:focus, select:focus{
+      border-color:#9bb5cf;
+      box-shadow:0 0 0 4px rgba(31,78,121,.08);
+    }
+
+    .quick-risk{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .quick-risk button{
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--primary-dark);
+      padding:9px 13px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:800;
+      transition:.18s ease;
+    }
+
+    .quick-risk button:hover{background:#f3f7fb}
+
+    .action-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .note-text{
+      margin-top:10px;
+      font-size:12.5px;
+      color:var(--muted);
+    }
+
+    .result-main{
+      background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color:#fff;
+      border-radius:20px;
+      padding:22px;
+      margin-bottom:14px;
+    }
+
+    .result-main small{
+      display:block;
+      color:rgba(255,255,255,.84);
+      font-weight:800;
+      margin-bottom:8px;
+    }
+
+    .lot-number{
+      font-size:clamp(38px, 7vw, 66px);
+      line-height:1;
+      font-weight:900;
+      direction:ltr;
+      text-align:right;
+      margin:4px 0 8px;
+    }
+
+    .result-main p{
+      margin:0;
+      color:rgba(255,255,255,.86);
+      font-size:14px;
+    }
+
+    .profit-main{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .profit-card{
+      border-radius:18px;
+      padding:16px;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+
+    .profit-card small{
+      display:block;
+      color:var(--muted);
+      font-weight:800;
+      margin-bottom:5px;
+    }
+
+    .profit-card strong{
+      display:block;
+      color:var(--success);
+      font-size:28px;
+      direction:ltr;
+      text-align:right;
+    }
+
+    .profit-card.loss strong{color:var(--danger)}
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:12px;
+    }
+
+    .stat{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:15px;
+    }
+
+    .stat small{
+      display:block;
+      color:var(--muted);
+      font-weight:800;
+      margin-bottom:5px;
+    }
+
+    .stat strong{
+      display:block;
+      color:var(--primary-dark);
+      font-size:22px;
+      direction:ltr;
+      text-align:right;
+    }
+
+    .message{
+      margin-top:14px;
+      border-radius:16px;
+      padding:14px 15px;
+      font-size:14px;
+      border:1px solid transparent;
+    }
+
+    .message.ok{
+      background:#eef8f2;
+      color:#216447;
+      border-color:#cde7d8;
+    }
+
+    .message.warn{
+      background:#fff6e8;
+      color:#8d6018;
+      border-color:#f4dfb5;
+    }
+
+    .message.bad{
+      background:#fdf0ef;
+      color:#963f3d;
+      border-color:#efcfcd;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      padding:22px;
+    }
+
+    .info-box{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:linear-gradient(180deg, #fff, #fbfdff);
+      padding:18px;
+    }
+
+    .info-box h4{
+      margin:0 0 12px;
+      color:var(--primary-dark);
+      font-size:18px;
+    }
+
+    .formula-box{
+      background:#f8fbfe;
+      border:1px dashed #d7e3ee;
+      border-radius:18px;
+      padding:16px;
+      color:var(--text);
+    }
+
+    .formula-box code{
+      display:block;
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:12px;
+      background:#fff;
+      border:1px solid #e1e9f1;
+      direction:ltr;
+      text-align:left;
+      color:var(--primary-dark);
+      overflow:auto;
+    }
+
+    .formula-line{
+      margin-top:8px;
+    }
+
+    .gold-example{
+      margin-top:12px;
+      background:#fff;
+      border:1px solid #e3ebf3;
+      border-radius:14px;
+      padding:12px;
+      color:var(--primary-dark);
+      font-weight:700;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:12px;
+    }
+
+    .step{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:15px;
+      background:#fff;
+    }
+
+    .step .num{
+      width:34px;height:34px;border-radius:12px;
+      display:grid;place-items:center;
+      background:#eef4fa;
+      color:var(--primary);
+      font-weight:900;
+      margin-bottom:8px;
+    }
+
+    .step b{
+      display:block;
+      color:var(--primary-dark);
+      margin-bottom:4px;
+    }
+
+    .step p{
+      margin:0;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:14px;
+      padding:22px;
+    }
+
+    .feature{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:linear-gradient(180deg, #fff, #fbfdff);
+      padding:18px;
+      transition:.18s ease;
+    }
+
+    .feature:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 24px rgba(22,50,74,.06);
+    }
+
+    .feature .icon{
+      width:44px;height:44px;border-radius:14px;
+      display:grid;place-items:center;
+      background:#eef4fa;
+      color:var(--primary);
+      font-size:20px;
+      margin-bottom:12px;
+    }
+
+    .feature h4{
+      margin:0 0 8px;
+      color:var(--primary-dark);
+      font-size:17px;
+    }
+
+    .feature p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer{
+      text-align:center;
+      padding:24px 0 36px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .hidden{display:none !important}
+
+    @media (max-width: 980px){
+      .hero, .calc-grid, .two-col, .features{
+        grid-template-columns:1fr;
+      }
+      .features{grid-template-columns:repeat(2, 1fr)}
+    }
+
+    @media (max-width: 760px){
+      .nav{
+        flex-direction:column;
+        align-items:stretch;
+        border-radius:24px;
+      }
+      .nav-links{justify-content:center}
+      .mode-tabs, .form-grid, .stats, .steps, .features, .profit-main{
+        grid-template-columns:1fr;
+      }
+      .section-head{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .hero-card, .hero-side{border-radius:24px}
+    }
+
+    @media print{
+      body{background:#fff}
+      .topbar, .hero, .ticker-wrap, .action-row, .quick-risk, .features, .footer, .nav{display:none !important}
+      .section, .form-box, .result-box, .info-box, .stat, .step, .profit-card{
+        box-shadow:none !important;
+        border:1px solid #ccc !important;
+        background:#fff !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar container">
+    <nav class="nav">
+      <div class="logo-wrap">
+        <div class="logo" aria-label="InvestProspero logo">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="64" y2="64">
+                <stop stop-color="#E7C37A"/>
+                <stop offset="1" stop-color="#D7B46A"/>
+              </linearGradient>
+            </defs>
+            <rect x="10" y="28" width="8" height="20" rx="4" fill="url(#g1)"/>
+            <rect x="24" y="20" width="8" height="28" rx="4" fill="url(#g1)"/>
+            <rect x="38" y="12" width="8" height="36" rx="4" fill="url(#g1)"/>
+            <path d="M10 42L22 34L30 36L46 18" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M42 18H50V26" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="brand">
+          <h1>InvestProspero</h1>
+          <p>Lot & Profit Calculator</p>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#calculator">الحاسبة</a>
+        <a href="#how">آلية الحساب</a>
+        <a href="#features">المميزات</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-card">
+        <div class="hero-badge"><span></span> منطق الذهب حسب 0.01 لوت</div>
+        <h2>احسب اللوت والربح المتوقع مع <em>InvestProspero</em></h2>
+        <p>
+          تم تعديل منطق الذهب كما طلبت: حركة الذهب 1 دولار من 5200 إلى 5201 = 10 نقاط،
+          وعلى 0.01 لوت تكون النتيجة تقريبًا 1 دولار ربح أو خسارة لكل حركة 1 دولار.
+        </p>
+        <div class="hero-actions">
+          <a href="#calculator" class="btn btn-primary">ابدأ الحساب</a>
+          <button class="btn btn-soft" onclick="window.print()">طباعة النتيجة</button>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="mini-stat">
+          <small>قاعدة الذهب</small>
+          <strong>$1 = 10 نقاط</strong>
+          <span>مثال: 5200 إلى 5201</span>
+        </div>
+        <div class="mini-stat">
+          <small>على 0.01 لوت</small>
+          <strong>$1 حركة = $1</strong>
+          <span>ربح أو خسارة تقريبية</span>
+        </div>
+        <div class="mini-stat">
+          <small>إضافة جديدة</small>
+          <strong>Take Profit</strong>
+          <span>حساب الربح المتوقع و R:R</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker-wrap" aria-label="symbols">
+      <div class="ticker">
+        <div class="ticker-item"><span class="ticker-dot"></span><b>XAUUSD</b><span class="up">+0.84%</span></div>
+        <div class="ticker-item"><span class="ticker-dot"></span><b>EURUSD</b><span class="up">+0.21%</span></div>
+        <div class="ticker-item"><span class="ticker-dot"></span><b>GBPUSD</b><span class="down">-0.18%</span></div>
+        <div class="ticker-item"><span class="ticker-dot"></span><b>USDJPY</b><span class="up">+0.33%</span></div>
+        <div class="ticker-item"><span class="ticker-dot"></span><b>XAGUSD</b><span class="up">+0.59%</span></div>
+
+        <div class="ticker-item"><span class="ticker-dot"></span><b>XAUUSD</b><span class="up">+0.84%</span></div>
+        <div class="ticker-item"><span class="ticker-dot"></span><b>EURUSD</b><span class="up">+0.21%</span></div>
+        <div class="ticker-item"><span class="ticker-dot"></span><b>GBPUSD</b><span class="down">-0.18%</span></div>
+        <div class="ticker-item"><span class="ticker-dot"></span><b>USDJPY</b><span class="up">+0.33%</span></div>
+        <div class="ticker-item"><span class="ticker-dot"></span><b>XAGUSD</b><span class="up">+0.59%</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section" id="calculator">
+      <div class="section-head">
+        <h3>حاسبة اللوت والربح</h3>
+        <div class="pill">Risk + Take Profit</div>
+      </div>
+
+      <div class="calc-grid">
+        <div class="form-box">
+          <div class="mode-tabs">
+            <div>
+              <input id="mode-gold" type="radio" name="assetType" value="gold" checked>
+              <label for="mode-gold">ذهب XAUUSD</label>
+            </div>
+            <div>
+              <input id="mode-forex" type="radio" name="assetType" value="forex">
+              <label for="mode-forex">فوركس</label>
+            </div>
+            <div>
+              <input id="mode-custom" type="radio" name="assetType" value="custom">
+              <label for="mode-custom">مخصص</label>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="capital">رأس المال</label>
+              <input id="capital" type="number" min="0" step="0.01" value="1000">
+              <div class="sub">مثال: 1000 دولار</div>
+            </div>
+
+            <div class="field">
+              <label for="riskPercent">نسبة المخاطرة %</label>
+              <input id="riskPercent" type="number" min="0" step="0.01" value="1">
+              <div class="sub">مثال: 1 أو 2</div>
+            </div>
+
+            <div class="field">
+              <label for="stopLoss">حجم وقف الخسارة</label>
+              <input id="stopLoss" type="number" min="0" step="0.01" value="30">
+              <div class="sub" id="stopHint">على الذهب: 30 نقطة = حركة 3 دولار في السعر</div>
+            </div>
+
+            <div class="field">
+              <label for="takeProfit">حجم جني الأرباح</label>
+              <input id="takeProfit" type="number" min="0" step="0.01" value="60">
+              <div class="sub" id="tpHint">على الذهب: 60 نقطة = حركة 6 دولار في السعر</div>
+            </div>
+
+            <div class="field">
+              <label for="stopUnit">وحدة الحساب</label>
+              <select id="stopUnit">
+                <option value="gold_points">نقاط الذهب: 10 نقاط = 1 دولار حركة</option>
+                <option value="gold_dollars">حركة السعر بالدولار</option>
+              </select>
+              <div class="sub" id="unitHint">على الذهب: 1 نقطة = 0.10 دولار حركة سعر</div>
+            </div>
+
+            <div class="field">
+              <label for="pipValue">قيمة النقطة/البيب للوت قياسي</label>
+              <input id="pipValue" type="number" min="0" step="0.01" value="10">
+              <div class="sub" id="pipHint">للذهب هنا: 1 نقطة = 10$ لكل 1.00 لوت، وبالتالي 0.01 لوت = 0.10$ للنقطة</div>
+            </div>
+
+            <div class="field" id="contractWrap">
+              <label for="contractSize">ربح 1.00 لوت لكل حركة 1 دولار</label>
+              <input id="contractSize" type="number" min="0" step="0.01" value="100">
+              <div class="sub">لأن 0.01 لوت يربح 1$ عند حركة الذهب 1$، إذن 1.00 لوت يربح 100$</div>
+            </div>
+
+            <div class="field">
+              <label for="spread">السبريد</label>
+              <input id="spread" type="number" min="0" step="0.01" value="0">
+              <div class="sub" id="spreadHint">بنفس وحدة الحساب: نقاط أو دولار حركة</div>
+            </div>
+
+            <div class="field">
+              <label for="commission">العمولة Round Turn لكل 1 لوت</label>
+              <input id="commission" type="number" min="0" step="0.01" value="0">
+              <div class="sub">مثال: 6 دولار لكل لوت فتح وإغلاق</div>
+            </div>
+
+            <div class="field">
+              <label for="minLot">أقل لوت مسموح</label>
+              <input id="minLot" type="number" min="0" step="0.01" value="0.01">
+              <div class="sub">مثال: 0.01</div>
+            </div>
+
+            <div class="field">
+              <label for="lotStep">خطوة اللوت</label>
+              <input id="lotStep" type="number" min="0.0001" step="0.01" value="0.01">
+              <div class="sub">مثال: 0.01</div>
+            </div>
+          </div>
+
+          <div class="quick-risk">
+            <button type="button" data-risk="0.5">0.5%</button>
+            <button type="button" data-risk="1">1%</button>
+            <button type="button" data-risk="1.5">1.5%</button>
+            <button type="button" data-risk="2">2%</button>
+            <button type="button" data-risk="3">3%</button>
+          </div>
+
+          <div class="action-row">
+            <button class="btn btn-primary" id="calculateBtn" type="button">احسب اللوت والربح</button>
+            <button class="btn btn-soft" id="resetBtn" type="button">إعادة ضبط</button>
+            <button class="btn btn-soft" id="copyBtn" type="button">نسخ النتيجة</button>
+          </div>
+
+          <div class="note-text">
+            هذه الحاسبة لإدارة المخاطرة والربح المتوقع، وليست توصية تداول.
+          </div>
+        </div>
+
+        <div class="result-box">
+          <div class="result-main">
+            <small>حجم اللوت المقترح</small>
+            <div class="lot-number" id="lotResult">0.03</div>
+            <p id="lotText">لوت قياسي تقريبًا بعد التقريب حسب خطوة اللوت.</p>
+          </div>
+
+          <div class="profit-main">
+            <div class="profit-card">
+              <small>الربح المتوقع عند جني الأرباح</small>
+              <strong id="expectedProfit">$18.00</strong>
+            </div>
+            <div class="profit-card loss">
+              <small>الخسارة المتوقعة عند وقف الخسارة</small>
+              <strong id="expectedLoss">$9.00</strong>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <small>المبلغ المعرض للخطر</small>
+              <strong id="riskAmount">$10.00</strong>
+            </div>
+            <div class="stat">
+              <small>تكلفة 1.00 لوت عند الستوب</small>
+              <strong id="costPerLot">$300.00</strong>
+            </div>
+            <div class="stat">
+              <small>ربح 1.00 لوت عند الهدف</small>
+              <strong id="profitPerLot">$600.00</strong>
+            </div>
+            <div class="stat">
+              <small>نسبة العائد إلى المخاطرة</small>
+              <strong id="rrRatio">1 : 2.00</strong>
+            </div>
+            <div class="stat">
+              <small>اللوت قبل التقريب</small>
+              <strong id="rawLot">0.03333</strong>
+            </div>
+            <div class="stat">
+              <small>الفرق عن المخاطرة المستهدفة</small>
+              <strong id="riskGap">$1.00</strong>
+            </div>
+            <div class="stat">
+              <small>نوع الأصل</small>
+              <strong id="assetBadge">XAUUSD</strong>
+            </div>
+            <div class="stat">
+              <small>معادلة الذهب الحالية</small>
+              <strong id="goldRule">0.01 = $1 / $1</strong>
+            </div>
+          </div>
+
+          <div class="message ok" id="messageBox">
+            النتيجة جاهزة. على الذهب حسب هذه القاعدة: 0.01 لوت يساوي تقريبًا 1$ ربح أو خسارة لكل حركة 1$ في السعر.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="section-head">
+        <h3>آلية الحساب</h3>
+        <div class="pill">Gold Logic + TP</div>
+      </div>
+
+      <div class="two-col">
+        <div class="info-box">
+          <h4>قاعدة الذهب المعتمدة</h4>
+          <div class="formula-box">
+            <div class="formula-line">حركة الذهب من 5200 إلى 5201 = حركة 1 دولار.</div>
+            <div class="formula-line">حسب طريقتك: حركة 1 دولار = 10 نقاط.</div>
+            <div class="formula-line">على 0.01 لوت: حركة 1 دولار = ربح أو خسارة 1 دولار تقريبًا.</div>
+            <div class="gold-example">
+              مثال: إذا دخلت 0.01 لوت وارتفع الذهب من 5200 إلى 5201، يكون الربح تقريبًا 1$.
+            </div>
+            <code>
+Gold Points = Price Movement × 10
+0.01 lot profit per $1 move = $1
+1.00 lot profit per $1 move = $100
+            </code>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <h4>معادلات اللوت والربح</h4>
+          <div class="formula-box">
+            <div>المخاطرة النقدية = رأس المال × نسبة المخاطرة ÷ 100</div>
+            <div style="margin-top:6px">تكلفة 1.00 لوت عند الستوب = نقاط الستوب × قيمة النقطة + السبريد + العمولة</div>
+            <div style="margin-top:6px">الربح المتوقع = اللوت النهائي × ربح 1.00 لوت عند الهدف</div>
+            <code>
+Lot Size = Risk Amount / Stop Cost Per 1.00 Lot
+Expected Profit = Final Lot × TP Profit Per 1.00 Lot
+R:R = Expected Profit / Expected Loss
+            </code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-head">
+        <h3>مميزات النسخة الحالية</h3>
+        <div class="pill">Updated Version</div>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <div class="icon">🥇</div>
+          <h4>منطق ذهب أوضح</h4>
+          <p>تم اعتماد قاعدة 1 دولار حركة = 10 نقاط حسب طلبك.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎯</div>
+          <h4>جني أرباح</h4>
+          <p>إضافة حقل TP وحساب الربح المتوقع تلقائيًا.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">⚖️</div>
+          <h4>Risk / Reward</h4>
+          <p>عرض نسبة العائد إلى المخاطرة بناءً على الستوب والهدف.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📋</div>
+          <h4>نسخ النتيجة</h4>
+          <p>نسخ اللوت والربح والخسارة والـ R:R بنقرة واحدة.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © InvestProspero — Lot & Profit Calculator
+    </div>
+  </main>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    const defaults = {
+      gold: {
+        stopLoss: 30,
+        takeProfit: 60,
+        stopUnit: "gold_points",
+        pipValue: 10,
+        contractSize: 100,
+        spread: 0,
+        commission: 0,
+        badge: "XAUUSD",
+        goldRule: "0.01 = $1 / $1",
+        stopHint: "على الذهب: 30 نقطة = حركة 3 دولار في السعر",
+        tpHint: "على الذهب: 60 نقطة = حركة 6 دولار في السعر",
+        unitHint: "على الذهب: 1 نقطة = 0.10 دولار حركة سعر",
+        pipHint: "للذهب هنا: 1 نقطة = 10$ لكل 1.00 لوت، وبالتالي 0.01 لوت = 0.10$ للنقطة",
+        spreadHint: "بنفس وحدة الحساب: نقاط أو دولار حركة"
+      },
+      forex: {
+        stopLoss: 30,
+        takeProfit: 60,
+        stopUnit: "forex_pips",
+        pipValue: 10,
+        contractSize: 100000,
+        spread: 0,
+        commission: 0,
+        badge: "FOREX",
+        goldRule: "حسب قيمة pip",
+        stopHint: "مثال: 30 pip",
+        tpHint: "مثال: 60 pip",
+        unitHint: "في الفوركس الحساب يكون عادة بالـ pip",
+        pipHint: "للأزواج مثل EURUSD غالبًا 1 pip = 10$ لكل 1.00 لوت",
+        spreadHint: "أدخل السبريد بالـ pip"
+      },
+      custom: {
+        stopLoss: 50,
+        takeProfit: 100,
+        stopUnit: "custom_points",
+        pipValue: 1,
+        contractSize: 1,
+        spread: 0,
+        commission: 0,
+        badge: "CUSTOM",
+        goldRule: "قيمة مخصصة",
+        stopHint: "أدخل وقف الخسارة وفق وحدتك الخاصة",
+        tpHint: "أدخل جني الأرباح وفق وحدتك الخاصة",
+        unitHint: "الحساب يعتمد على قيمة النقطة التي تدخلها يدويًا",
+        pipHint: "أدخل قيمة النقطة أو البيب لكل 1.00 لوت حسب الأصل",
+        spreadHint: "بنفس وحدة الحساب المخصصة"
+      }
+    };
+
+    const stopUnitOptions = {
+      gold: [
+        ["gold_points", "نقاط الذهب: 10 نقاط = 1 دولار حركة"],
+        ["gold_dollars", "حركة السعر بالدولار"]
+      ],
+      forex: [
+        ["forex_pips", "Pips الفوركس"]
+      ],
+      custom: [
+        ["custom_points", "نقاط مخصصة"]
+      ]
+    };
+
+    function toNum(value){
+      const n = Number(value);
+      return Number.isFinite(n) ? n : 0;
+    }
+
+    function money(n){
+      return "$" + n.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
+    }
+
+    function fixedLot(n){
+      if(!Number.isFinite(n) || n <= 0) return "0.00";
+      if(n < 1) return n.toFixed(3).replace(/0$/, "").replace(/0$/, "");
+      return n.toFixed(2);
+    }
+
+    function roundDownToStep(value, step){
+      if(step <= 0) return value;
+      const precision = Math.max(0, (step.toString().split(".")[1] || "").length);
+      return Number((Math.floor(value / step) * step).toFixed(precision));
+    }
+
+    function selectedAsset(){
+      return document.querySelector("input[name='assetType']:checked").value;
+    }
+
+    function refreshUnitOptions(asset){
+      const select = $("stopUnit");
+      select.innerHTML = "";
+      stopUnitOptions[asset].forEach(([value, text]) => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = text;
+        select.appendChild(option);
+      });
+    }
+
+    function applyAssetDefaults(asset){
+      const d = defaults[asset];
+      refreshUnitOptions(asset);
+      $("stopLoss").value = d.stopLoss;
+      $("takeProfit").value = d.takeProfit;
+      $("stopUnit").value = d.stopUnit;
+      $("pipValue").value = d.pipValue;
+      $("contractSize").value = d.contractSize;
+      $("spread").value = d.spread;
+      $("commission").value = d.commission;
+      $("assetBadge").textContent = d.badge;
+      $("goldRule").textContent = d.goldRule;
+      $("stopHint").textContent = d.stopHint;
+      $("tpHint").textContent = d.tpHint;
+      $("unitHint").textContent = d.unitHint;
+      $("pipHint").textContent = d.pipHint;
+      $("spreadHint").textContent = d.spreadHint;
+
+      if(asset === "gold"){
+        $("contractWrap").classList.remove("hidden");
+      } else {
+        $("contractWrap").classList.add("hidden");
+      }
+
+      calculate();
+    }
+
+    function valuePerUnitForOneLot(asset, unit, pipValue, contractSize){
+      if(asset === "gold" && unit === "gold_dollars"){
+        return contractSize;
+      }
+      return pipValue;
+    }
+
+    function costForOneLot(asset, units, unit, pipValue, contractSize, spread, commission, includeCommission){
+      const valuePerUnit = valuePerUnitForOneLot(asset, unit, pipValue, contractSize);
+      const spreadCost = spread * valuePerUnit;
+      const fee = includeCommission ? commission : 0;
+      return (units * valuePerUnit) + spreadCost + fee;
+    }
+
+    function profitForOneLot(asset, units, unit, pipValue, contractSize, commission){
+      const valuePerUnit = valuePerUnitForOneLot(asset, unit, pipValue, contractSize);
+      return (units * valuePerUnit) - commission;
+    }
+
+    function setMessage(type, text){
+      const box = $("messageBox");
+      box.className = "message " + type;
+      box.textContent = text;
+    }
+
+    function calculate(){
+      const asset = selectedAsset();
+
+      const capital = toNum($("capital").value);
+      const riskPercent = toNum($("riskPercent").value);
+      const stopLoss = toNum($("stopLoss").value);
+      const takeProfit = toNum($("takeProfit").value);
+      const stopUnit = $("stopUnit").value;
+      const pipValue = toNum($("pipValue").value);
+      const contractSize = toNum($("contractSize").value);
+      const spread = toNum($("spread").value);
+      const commission = toNum($("commission").value);
+      const minLot = toNum($("minLot").value);
+      const lotStep = toNum($("lotStep").value);
+
+      const riskAmount = capital * riskPercent / 100;
+      const cost = costForOneLot(asset, stopLoss, stopUnit, pipValue, contractSize, spread, commission, true);
+      const tpProfitPerLot = profitForOneLot(asset, takeProfit, stopUnit, pipValue, contractSize, commission);
+      const rawLot = cost > 0 ? (riskAmount / cost) : 0;
+      let roundedLot = roundDownToStep(rawLot, lotStep);
+      let roundedRisk = roundedLot * cost;
+      let expectedProfit = roundedLot * tpProfitPerLot;
+      let riskGap = Math.abs(riskAmount - roundedRisk);
+      let rr = roundedRisk > 0 ? expectedProfit / roundedRisk : 0;
+
+      if(capital <= 0 || riskPercent <= 0 || stopLoss <= 0 || takeProfit <= 0 || pipValue <= 0 || cost <= 0){
+        roundedLot = 0;
+        roundedRisk = 0;
+        expectedProfit = 0;
+        riskGap = 0;
+        rr = 0;
+        setMessage("bad", "أدخل بيانات صحيحة: رأس المال، المخاطرة، وقف الخسارة، جني الأرباح، وقيمة النقطة.");
+      } else if(rawLot < minLot){
+        setMessage("warn", "اللوت المحسوب أقل من أقل لوت مسموح. فتح أقل لوت قد يجعل المخاطرة الفعلية أعلى من المطلوب.");
+      } else if(tpProfitPerLot <= 0){
+        setMessage("warn", "الربح المتوقع عند الهدف غير موجب بسبب العمولة أو قيمة الهدف. راجع قيمة TP والعمولة.");
+      } else if(riskPercent > 3){
+        setMessage("warn", "نسبة المخاطرة مرتفعة نسبيًا. يفضل غالبًا البقاء بين 0.5% و 2% أو 3% كحد أعلى.");
+      } else {
+        if(asset === "gold"){
+          setMessage("ok", "النتيجة جاهزة. حسب قاعدة الذهب الحالية: 5200 إلى 5201 = 10 نقاط، و 0.01 لوت يربح تقريبًا 1$ لكل حركة 1$.");
+        } else {
+          setMessage("ok", "النتيجة جاهزة. تأكد من قيمة البيب والعقد من منصة الوسيط للحصول على دقة كاملة.");
+        }
+      }
+
+      $("lotResult").textContent = fixedLot(roundedLot);
+      $("lotText").textContent = roundedLot > 0 ? "لوت قياسي تقريبًا بعد التقريب حسب خطوة اللوت." : "لا توجد نتيجة صالحة حاليًا.";
+      $("riskAmount").textContent = money(riskAmount);
+      $("costPerLot").textContent = money(cost);
+      $("profitPerLot").textContent = money(tpProfitPerLot);
+      $("expectedProfit").textContent = money(expectedProfit);
+      $("expectedLoss").textContent = money(roundedRisk);
+      $("rrRatio").textContent = "1 : " + (Number.isFinite(rr) && rr > 0 ? rr.toFixed(2) : "0.00");
+      $("rawLot").textContent = Number.isFinite(rawLot) ? rawLot.toFixed(5) : "0.00000";
+      $("riskGap").textContent = money(riskGap);
+    }
+
+    document.querySelectorAll("input[name='assetType']").forEach(r => {
+      r.addEventListener("change", () => applyAssetDefaults(selectedAsset()));
+    });
+
+    ["capital", "riskPercent", "stopLoss", "takeProfit", "stopUnit", "pipValue", "contractSize", "spread", "commission", "minLot", "lotStep"].forEach(id => {
+      $(id).addEventListener("input", calculate);
+      $(id).addEventListener("change", calculate);
+    });
+
+    document.querySelectorAll("[data-risk]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        $("riskPercent").value = btn.getAttribute("data-risk");
+        calculate();
+      });
+    });
+
+    $("calculateBtn").addEventListener("click", calculate);
+
+    $("resetBtn").addEventListener("click", () => {
+      $("capital").value = 1000;
+      $("riskPercent").value = 1;
+      $("minLot").value = 0.01;
+      $("lotStep").value = 0.01;
+      applyAssetDefaults(selectedAsset());
+    });
+
+    $("copyBtn").addEventListener("click", async () => {
+      const text = [
+        "InvestProspero Result",
+        "Asset: " + $("assetBadge").textContent,
+        "Lot Size: " + $("lotResult").textContent,
+        "Risk Amount: " + $("riskAmount").textContent,
+        "Expected Loss: " + $("expectedLoss").textContent,
+        "Expected Profit: " + $("expectedProfit").textContent,
+        "R:R: " + $("rrRatio").textContent,
+        "Stop Cost Per 1 Lot: " + $("costPerLot").textContent,
+        "TP Profit Per 1 Lot: " + $("profitPerLot").textContent,
+        "Gold Rule: " + $("goldRule").textContent
+      ].join("\n");
+
+      try{
+        await navigator.clipboard.writeText(text);
+        setMessage("ok", "تم نسخ النتيجة إلى الحافظة بنجاح.");
+      }catch(e){
+        setMessage("warn", "تعذر النسخ تلقائيًا من هذا المتصفح، لكن يمكنك النسخ يدويًا.");
+      }
+    });
+
+    applyAssetDefaults("gold");
+  </script>
+</body>
+</html>
